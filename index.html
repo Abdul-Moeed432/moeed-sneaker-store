@@ -2,1096 +2,1077 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080808">
-  <title>MOEED | Premium Sneaker Store</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <style>
-    :root {
-      --red: #ff3038;
-      --bg: #080808;
-      --card: #151515;
-      --muted: #aaa;
-      --line: #292929
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 85px
-    }
-
-    body {
-      background: var(--bg);
-      color: #fff;
-      font-family: Inter, Arial, sans-serif;
-      overflow-x: hidden
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none
-    }
-
-    button {
-      font: inherit;
-      cursor: pointer
-    }
-
-    .topbar {
-      background: var(--red);
-      text-align: center;
-      padding: 10px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2px
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 15px 7%;
-      background: #090909ed;
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px)
-    }
-
-    .logo {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-start;
-      font: 900 30px/.9 'Barlow Condensed', sans-serif;
-      letter-spacing: 2.5px
-    }
-
-    .logo span {
-      color: var(--red)
-    }
-
-    .logo small {
-      display: block;
-      margin-top: 7px;
-      font: 700 8px/1 Inter, sans-serif;
-      color: #aaa;
-      letter-spacing: 3.2px
-    }
-
-    nav {
-      display: flex;
-      gap: 22px
-    }
-
-    nav a {
-      font-size: 10px;
-      font-weight: 800;
-      color: #ccc;
-      transition: color .25s
-    }
-
-    nav a:hover {
-      color: var(--red)
-    }
-
-    .cart,
-    .menu {
-      background: #111;
-      color: white;
-      border: 1px solid #444;
-      padding: 11px 14px
-    }
-
-    .cart b {
-      color: var(--red)
-    }
-
-    .menu {
-      display: none
-    }
-
-    .hero {
-      min-height: 690px;
-      height: 84vh;
-      max-height: 900px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 50px 9%
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, #080808 0%, #080808df 35%, #08080835 100%), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1800&q=90') center/cover;
-      animation: heroZoom 16s ease-in-out infinite alternate
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 650px;
-      animation: heroEnter 1s .15s both
-    }
-
-    .eyebrow {
-      color: var(--red);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 3px
-    }
-
-    h1 {
-      font: 900 clamp(68px, 11vw, 130px)/.85 'Barlow Condensed', sans-serif;
-      margin: 25px 0;
-      letter-spacing: -2px
-    }
-
-    h1 span,
-    h2 span {
-      color: var(--red);
-      text-shadow: 0 0 30px #ff303844
-    }
-
-    .desc {
-      font-size: 13px;
-      color: #bbb;
-      line-height: 1.9;
-      max-width: 390px;
-      margin-bottom: 25px
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--red);
-      color: white;
-      padding: 15px 21px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      border: 1px solid var(--red);
-      transition: transform .3s, box-shadow .3s
-    }
-
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px #ff303844
-    }
-
-    .outline {
-      background: transparent;
-      border-color: #555;
-      margin-left: 8px
-    }
-
-    .stats {
-      display: flex;
-      gap: 35px;
-      margin-top: 40px
-    }
-
-    .stats strong {
-      font: 800 24px 'Barlow Condensed', sans-serif
-    }
-
-    .stats strong span {
-      color: var(--red)
-    }
-
-    .stats small {
-      display: block;
-      color: #888;
-      font-size: 9px;
-      letter-spacing: 1px;
-      margin-top: 5px
-    }
-
-    .stamp {
-      position: absolute;
-      right: 8%;
-      bottom: 12%;
-      width: 112px;
-      height: 112px;
-      border: 1px solid #ffffff66;
-      border-radius: 50%;
-      display: grid;
-      place-content: center;
-      text-align: center;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2.4px;
-      background: #08080842;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 0 0 6px #ffffff08, 0 12px 40px #0006;
-      animation: badgeFloat 5s ease-in-out infinite
-    }
-
-    .stamp:before {
-      content: '';
-      position: absolute;
-      inset: 7px;
-      border: 1px dashed #ff303899;
-      border-radius: 50%;
-      animation: stampSpin 28s linear infinite
-    }
-
-    .stamp span {
-      color: var(--red);
-      font-size: 22px;
-      text-shadow: 0 0 16px #ff303877
-    }
-
-    .marquee {
-      background: var(--red);
-      overflow: hidden;
-      padding: 14px 0;
-      white-space: nowrap
-    }
-
-    .marquee div {
-      display: flex;
-      width: max-content;
-      animation: slide 24s linear infinite;
-      font: 800 15px 'Barlow Condensed', sans-serif;
-      letter-spacing: 3px
-    }
-
-    .marquee span {
-      padding: 0 25px
-    }
-
-    section.products {
-      padding: 80px 7%
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 30px
-    }
-
-    h2 {
-      font: 900 clamp(36px, 5vw, 60px)/1 'Barlow Condensed', sans-serif
-    }
-
-    .sub {
-      font-size: 12px;
-      color: #999;
-      line-height: 1.8;
-      margin-top: 12px
-    }
-
-    .filters {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-      margin-bottom: 28px
-    }
-
-    .filter {
-      background: #141414;
-      border: 1px solid #333;
-      color: #aaa;
-      padding: 11px 17px;
-      font-size: 10px;
-      transition: .25s
-    }
-
-    .filter.active,
-    .filter:hover {
-      background: var(--red);
-      border-color: var(--red);
-      color: white
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid #252525;
-      overflow: hidden;
-      transition: transform .35s, border-color .35s, box-shadow .35s;
-      animation: cardEnter .65s both;
-      animation-delay: var(--delay, 0ms)
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: var(--red);
-      box-shadow: 0 15px 35px #0009
-    }
-
-    .photo {
-      aspect-ratio: 1;
-      position: relative;
-      overflow: hidden;
-      background: #202020
-    }
-
-    .photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .6s
-    }
-
-    .card:hover .photo img {
-      transform: scale(1.1) rotate(-2deg)
-    }
-
-    .tag {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: var(--red);
-      padding: 6px 9px;
-      font-size: 9px;
-      font-weight: 800
-    }
-
-    .heart {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #090909cc;
-      color: white;
-      border: 0;
-      border-radius: 50%;
-      width: 34px;
-      height: 34px;
-      font-size: 18px
-    }
-
-    .heart.liked {
-      color: var(--red)
-    }
-
-    .details {
-      padding: 14px
-    }
-
-    .details small {
-      color: var(--red);
-      font-size: 9px;
-      letter-spacing: 1px
-    }
-
-    .details h3 {
-      font-size: 13px;
-      margin: 8px 0 13px
-    }
-
-    .price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 5px
-    }
-
-    .price {
-      font-size: 12px;
-      font-weight: 800
-    }
-
-    .stars {
-      font-size: 10px;
-      color: #ffc857
-    }
-
-    .add {
-      width: 100%;
-      padding: 13px;
-      background: #222;
-      border: 0;
-      color: white;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      transition: .3s
-    }
-
-    .add:hover {
-      background: var(--red)
-    }
-
-    .promo {
-      margin: 0 7% 80px;
-      min-height: 350px;
-      display: flex;
-      align-items: center;
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(90deg, #080808 0%, #080808e8 45%, #08080825 100%), url('https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=1400&q=90') center/cover;
-      border: 1px solid var(--line)
-    }
-
-    .promo h2 {
-      font-size: clamp(42px, 6vw, 75px);
-      margin: 18px 0
-    }
-
-    .promo p {
-      color: #bbb;
-      font-size: 12px;
-      line-height: 1.8;
-      margin-bottom: 24px
-    }
-
-    .benefits {
-      padding: 0 7% 80px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px
-    }
-
-    .benefit {
-      border: 1px solid var(--line);
-      background: #111;
-      padding: 25px;
-      transition: .3s
-    }
-
-    .benefit:hover {
-      border-color: var(--red);
-      transform: translateY(-5px)
-    }
-
-    .benefit .icon {
-      font-size: 28px;
-      color: var(--red)
-    }
-
-    .benefit h3 {
-      font-size: 12px;
-      margin: 14px 0 8px
-    }
-
-    .benefit p {
-      font-size: 11px;
-      color: #999;
-      line-height: 1.8
-    }
-
-    .contact {
-      margin: 0 7% 80px;
-      padding: 45px;
-      border: 1px solid var(--line);
-      background: radial-gradient(circle at 90% 10%, #ff303817, transparent 35%), #101010;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 25px;
-      flex-wrap: wrap;
-      border-radius: 18px;
-      box-shadow: 0 20px 60px #0004
-    }
-
-    .contact h2 {
-      margin: 12px 0
-    }
-
-    .contact p {
-      color: #aaa;
-      font-size: 12px;
-      line-height: 1.8;
-      max-width: 470px
-    }
-
-    .contact-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap
-    }
-
-    .contact-link span {
-      display: flex;
-      flex-direction: column;
-      gap: 5px
-    }
-
-    .contact-link strong {
-      font-size: 11px
-    }
-
-    .contact-link small {
-      font-size: 9px;
-      font-weight: 500;
-      color: #a9a9a9;
-      letter-spacing: 0
-    }
-
-    .gmail-icon {
-      width: 25px;
-      height: 25px;
-      flex-shrink: 0
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 14px 19px;
-      border: 1px solid #383838;
-      border-radius: 7px;
-      background: linear-gradient(145deg, #1b1b1b, #111);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .3px;
-      transition: transform .25s, border-color .25s, box-shadow .25s
-    }
-
-    .contact-link:hover {
-      transform: translateY(-3px);
-      border-color: var(--red);
-      box-shadow: 0 8px 24px #0005
-    }
-
-    .contact-link.whatsapp {
-      border-color: #245b3b;
-      background: linear-gradient(145deg, #14251b, #101510)
-    }
-
-    .contact-link.whatsapp:hover {
-      border-color: #25D366;
-      box-shadow: 0 8px 24px #25d36620
-    }
-
-    .wa-icon {
-      width: 27px;
-      height: 27px;
-      flex-shrink: 0
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 40px 7% 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px
-    }
-
-    footer p {
-      font-size: 11px;
-      color: #999
-    }
-
-    .bottom {
-      width: 100%;
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
-      margin-top: 15px;
-      color: #777;
-      font-size: 9px;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translate(-50%, 25px);
-      background: white;
-      color: #111;
-      padding: 14px 20px;
-      font-size: 12px;
-      font-weight: 700;
-      z-index: 100;
-      opacity: 0;
-      transition: .3s;
-      pointer-events: none;
-      text-align: center;
-      max-width: 90vw
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translate(-50%, 0)
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .75s ease, transform .75s ease
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0)
-    }
-
-    .wa-float {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, #2be879, #19b957);
-      border: 2px solid #ffffffd9;
-      box-shadow: 0 7px 24px #25d36655, 0 0 0 5px #25d3661c;
-      z-index: 80;
-      transition: transform .25s, box-shadow .25s;
-      animation: waPulse 3.2s ease-in-out infinite
-    }
-
-    .wa-float:hover {
-      transform: translateY(-4px) scale(1.04);
-      box-shadow: 0 12px 30px #25d36666, 0 0 0 7px #25d36620
-    }
-
-    .wa-float svg {
-      width: 32px;
-      height: 32px;
-      fill: white
-    }
-
-    @keyframes heroEnter {
-      from {
-        opacity: 0;
-        transform: translateY(35px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    @keyframes brandReveal {
-      from {
-        opacity: 0;
-        transform: translateY(-7px);
-        letter-spacing: 5px
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        letter-spacing: 2px
-      }
-    }
-
-    @keyframes brandDot {
-      0% {
-        transform: scale(.4);
-        opacity: .2
-      }
-
-      65% {
-        transform: scale(1.35)
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1
-      }
-    }
-
-    @keyframes stampReveal {
-      from {
-        opacity: 0;
-        transform: scale(.88) rotate(-12deg)
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1) rotate(0)
-      }
-    }
-
-    @keyframes waFloatIn {
-      from {
-        opacity: 0;
-        transform: translateY(12px) scale(.9)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1)
-      }
-    }
-
-    @keyframes heroZoom {
-      to {
-        transform: scale(1.08)
-      }
-    }
-
-    @keyframes slide {
-      to {
-        transform: translateX(-50%)
-      }
-    }
-
-    @keyframes badgeFloat {
-
-      0%,
-      100% {
-        transform: translateY(0)
-      }
-
-      50% {
-        transform: translateY(-7px)
-      }
-    }
-
-    @keyframes cardEnter {
-      from {
-        opacity: 0;
-        transform: translateY(24px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    @keyframes waPulse {
-
-      0%,
-      100% {
-        box-shadow: 0 7px 24px #25d36655, 0 0 0 5px #25d3661c
-      }
-
-      50% {
-        box-shadow: 0 9px 28px #25d36670, 0 0 0 8px #25d36612
-      }
-    }
-
-    @media(max-width:1000px) {
-      header {
-        padding: 15px 4%
-      }
-
-      nav {
-        gap: 12px
-      }
-
-      .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr))
-      }
-    }
-
-    @media(max-width:650px) {
-      header {
-        padding: 13px 5%
-      }
-
-      .logo {
-        font-size: 24px
-      }
-
-      .menu {
-        display: block;
-        margin-left: auto
-      }
-
-      nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #101010;
-        padding: 25px 6%;
-        flex-direction: column;
-        gap: 22px
-      }
-
-      nav.open {
-        display: flex
-      }
-
-      .hero {
-        min-height: 650px;
-        height: 84svh;
-        padding: 35px 6%
-      }
-
-      .hero-bg {
-        background: linear-gradient(90deg, #080808e8, #08080870), linear-gradient(0deg, #090909, transparent 45%), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1000&q=85') center/cover
-      }
-
-      h1 {
-        font-size: clamp(65px, 16vw, 100px)
-      }
-
-      .stats {
-        gap: 18px
-      }
-
-      .stats strong {
-        font-size: 20px
-      }
-
-      .stats small {
-        font-size: 8px
-      }
-
-      .stamp {
-        width: 75px;
-        height: 75px;
-        right: 5%;
-        bottom: 7%;
-        font-size: 8px
-      }
-
-      section.products {
-        padding: 65px 5%
-      }
-
-      .section-head {
-        align-items: start;
-        flex-direction: column
-      }
-
-      .grid {
-        gap: 11px
-      }
-
-      .details {
-        padding: 10px
-      }
-
-      .details h3 {
-        font-size: 12px
-      }
-
-      .price {
-        font-size: 11px
-      }
-
-      .stars {
-        font-size: 9px
-      }
-
-      .promo {
-        margin: 0 5% 60px;
-        padding: 25px;
-        min-height: 330px
-      }
-
-      .benefits {
-        grid-template-columns: 1fr;
-        padding: 0 5% 60px
-      }
-
-      .contact {
-        margin: 0 5% 60px;
-        padding: 26px
-      }
-
-      .contact-actions {
-        width: 100%
-      }
-
-      .contact-link {
-        flex: 1;
-        justify-content: center;
-        min-width: 180px
-      }
-
-      footer {
-        padding: 35px 5% 20px
-      }
-
-      .wa-float {
-        width: 54px;
-        height: 54px;
-        right: 15px;
-        bottom: 15px
-      }
-    }
-
-    @media(prefers-reduced-motion:reduce) {
-
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moeed | Luxury Sneaker Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --primary: #0077ff;
+            --navy: #0a192f;
+            --dark-card: #112240;
+            --white: #ffffff;
+            --gray-light: #f4f6f9;
+            --gray-text: #8892b0;
+            --border-color: #233554;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: Montserrat, Arial, sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            overflow-x: hidden
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer
+        }
+
+        header {
+            height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        .logo span {
+            color: var(--primary)
+        }
+
+        nav {
+            display: flex;
+            gap: 27px;
+            align-items: center
+        }
+
+        nav a {
+            font-size: 12px;
+            font-weight: 700;
+            color: #ccd6f6;
+            transition: .3s
+        }
+
+        nav a:hover {
+            color: var(--primary)
+        }
+
+        .cart {
+            background: var(--primary);
+            border: 0;
+            padding: 12px 17px;
+            color: white;
+            font-weight: 800;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .cart:hover {
+            opacity: 0.9;
+        }
+
+        .menu {
+            display: none;
+            background: none;
+            border: 0;
+            color: white;
+            font-size: 27px
+        }
+
+        .hero {
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 65px 8%;
+            gap: 30px;
+            background: radial-gradient(ellipse at 80% 40%, #1d3557 0%, #0a192f 75%);
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 20px
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 78px);
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: -3px;
+            color: var(--white);
+        }
+
+        .hero h1 span {
+            color: var(--primary)
+        }
+
+        .hero p {
+            color: var(--gray-text);
+            line-height: 1.9;
+            font-size: 14px;
+            max-width: 470px;
+            margin: 22px 0 28px
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            padding: 15px 24px;
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 800;
+            color: white;
+            transition: .3s
+        }
+
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px)
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--gray-text);
+            color: var(--white);
+            margin-left: 10px
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: float 4s ease-in-out infinite
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-height: 460px;
+            object-fit: contain;
+            filter: drop-shadow(0 25px 30px rgba(0, 0, 0, 0.5))
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg)
+            }
+
+            50% {
+                transform: translateY(-14px) rotate(2deg)
+            }
+        }
+
+        .stats {
+            display: flex;
+            gap: 35px;
+            margin-top: 40px
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 23px;
+            color: var(--white);
+        }
+
+        .stat small {
+            color: var(--gray-text);
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        section {
+            padding: 85px 8%
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 42px
+        }
+
+        .section-head small {
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: 3px;
+            font-size: 11px
+        }
+
+        .section-head h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            margin-top: 12px;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .section-head p {
+            color: var(--gray-text);
+            font-size: 13px;
+            margin-top: 12px
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px
+        }
+
+        .filter {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            color: #ccd6f6;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .filter.active,
+        .filter:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 23px
+        }
+
+        .product {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 9px;
+            overflow: hidden;
+            transition: .3s
+        }
+
+        .product:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(0, 119, 255, 0.15)
+        }
+
+        .product-img {
+            height: 245px;
+            background: #0d1b2a;
+            position: relative;
+            overflow: hidden
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s
+        }
+
+        .product:hover .product-img img {
+            transform: scale(1.07)
+        }
+
+        .tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: var(--primary);
+            padding: 7px 10px;
+            font-size: 9px;
+            font-weight: 800;
+            border-radius: 3px;
+            color: white;
+        }
+
+        .heart {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(10, 25, 47, 0.8);
+            color: white;
+            border: 0;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            font-size: 19px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .product-info {
+            padding: 20px
+        }
+
+        .rating {
+            color: #ffc83d;
+            font-size: 12px;
+            margin-bottom: 9px
+        }
+
+        .product-info h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .product-info p {
+            font-size: 11px;
+            color: var(--gray-text)
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 18px
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .add {
+            background: var(--primary);
+            color: white;
+            border: 0;
+            border-radius: 4px;
+            padding: 11px 13px;
+            font-size: 11px;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .add:hover {
+            opacity: 0.9;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+            background: #0d1b2a;
+        }
+
+        .about img {
+            width: 100%;
+            height: 370px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .about h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.2;
+            margin: 12px 0 20px;
+            color: var(--white);
+        }
+
+        .about p {
+            color: var(--gray-text);
+            font-size: 13px;
+            line-height: 2;
+            margin-bottom: 25px
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 35px
+        }
+
+        .feature {
+            text-align: center;
+            padding: 28px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--dark-card);
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .feature .icon {
+            font-size: 30px;
+            margin-bottom: 14px
+        }
+
+        .feature h3 {
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .feature p {
+            font-size: 11px;
+            color: var(--gray-text);
+            line-height: 1.7
+        }
+
+        .offer {
+            margin: 0 8%;
+            padding: 48px;
+            background: linear-gradient(135deg, #0a192f, #0077ff);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            border: 1px solid var(--border-color);
+        }
+
+        .offer h2 {
+            font-size: clamp(24px, 4vw, 40px);
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .offer p {
+            font-size: 12px;
+            margin-top: 12px;
+            color: #e2e8f0
+        }
+
+        .offer .btn {
+            background: var(--white);
+            color: var(--navy);
+            border-color: var(--white);
+            white-space: nowrap
+        }
+
+        .offer .btn:hover {
+            background: transparent;
+            color: var(--white);
+        }
+
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px
+        }
+
+        .review {
+            background: var(--dark-card);
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px
+        }
+
+        .review .rating {
+            font-size: 14px
+        }
+
+        .review p {
+            color: var(--gray-text);
+            font-size: 12px;
+            line-height: 1.9;
+            margin: 15px 0
+        }
+
+        .review strong {
+            font-size: 12px;
+            color: var(--white);
+        }
+
+        .contact {
+            background: #0d1b2a
+        }
+
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px
+        }
+
+        .contact h2 {
+            font-size: 35px;
+            margin: 12px 0 18px;
+            color: var(--white);
+        }
+
+        .contact p {
+            color: var(--gray-text);
+            font-size: 13px;
+            line-height: 1.9
+        }
+
+        .contact form {
+            display: grid;
+            gap: 13px
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            background: var(--navy);
+            border: 1px solid var(--border-color);
+            color: white;
+            border-radius: 4px;
+            font: inherit;
+            font-size: 12px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--primary)
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical
+        }
+
+        form .btn {
+            width: 100%
+        }
+
+        footer {
+            padding: 35px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border-color);
+            background: var(--navy);
+        }
+
+        footer p {
+            font-size: 11px;
+            color: var(--gray-text)
+        }
+
+        .social {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .social a {
+            color: var(--gray-text);
+            transition: 0.3s;
+        }
+
+        .social a:hover {
+            color: var(--primary)
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--primary);
+            padding: 15px 20px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 200;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: .3s;
+            pointer-events: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity .7s, transform .7s
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @media(max-width:800px) {
+            header {
+                padding: 0 5%;
+                height: 68px
+            }
+
+            .menu {
+                display: block
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                padding: 25px;
+                flex-direction: column;
+                gap: 22px;
+                border-bottom: 1px solid var(--border-color)
+            }
+
+            nav.open {
+                display: flex
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 65px 7%;
+                text-align: center
+            }
+
+            .hero p {
+                margin: 20px auto
+            }
+
+            .hero-image {
+                grid-row: 1;
+                max-width: 470px;
+                margin: auto
+            }
+
+            .stats {
+                justify-content: center
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .about,
+            .contact-wrap {
+                grid-template-columns: 1fr
+            }
+
+            .reviews {
+                grid-template-columns: 1fr
+            }
+
+            .offer {
+                margin: 0 5%;
+                padding: 30px;
+                flex-direction: column;
+                text-align: center
+            }
+
+            section {
+                padding: 65px 6%
+            }
+        }
+
+        @media(max-width:480px) {
+            .products {
+                grid-template-columns: 1fr
+            }
+
+            .product-img {
+                height: 270px
+            }
+
+            .features {
+                grid-template-columns: 1fr
+            }
+
+            .hero h1 {
+                letter-spacing: -2px
+            }
+
+            .btn {
+                padding: 13px 16px
+            }
+
+            .btn-outline {
+                margin: 10px 0 0
+            }
+
+            .stats {
+                gap: 20px
+            }
+
+            .stat strong {
+                font-size: 19px
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="topbar">🔥 NEW SEASON · NEW KICKS · YOUR STYLE · MOEED SNEAKERS 🔥</div>
-  <header>
-    <a href="#home" class="logo">MOEED<span>.</span><small>SNEAKER DISTRICT</small></a>
-    <button class="menu" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    <nav id="nav"><a href="#home">HOME</a><a href="#shoes">SNEAKERS</a><a href="#drops">NEW DROPS</a><a
-        href="#benefits">WHY MOEED</a><a href="#contact">CONTACT</a></nav>
-    <button class="cart" id="openCart">BAG (<b id="cartCount">0</b>)</button>
-  </header>
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <p class="eyebrow">THE NEXT STEP STARTS HERE</p>
-        <h1>OWN YOUR<br><span>GAME.</span></h1>
-        <p class="desc">Fresh kicks. Big energy. Your own rules. Discover iconic sneaker styles and level up every step
-          with MOEED.</p>
-        <a class="btn" href="#shoes">SHOP SNEAKERS ↗</a><a class="btn outline" href="#drops">LATEST DROPS ↓</a>
-        <div class="stats">
-          <div><strong>08<span>+</span></strong><small>SHOE STYLES</small></div>
-          <div><strong>24<span>/7</span></strong><small>FRESH ENERGY</small></div>
-          <div><strong>100<span>%</span></strong><small>YOUR STYLE</small></div>
+
+    <header>
+        <a class="logo" href="#home">Moeed<span>.</span></a>
+        <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
+        <nav id="nav">
+            <a href="#home">HOME</a>
+            <a href="#products">COLLECTION</a>
+            <a href="#about">ABOUT</a>
+            <a href="#reviews">REVIEWS</a>
+            <a href="#contact">CONTACT</a>
+            <button class="cart" id="cartBtn">🛍 CART (<span id="cartCount">0</span>)</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-text reveal">
+                <div class="eyebrow">THE ULTIMATE SNEAKER EDIT</div>
+                <h1>STEP INTO<br>YOUR <span>FUTURE.</span></h1>
+                <p>Discover world-class luxury footwear crafted for those who define the culture. Supreme comfort,
+                    unmatched durability, and iconic design.</p>
+                <a href="#products" class="btn">EXPLORE COLLECTION ↗</a>
+                <a href="#about" class="btn btn-outline">OUR STORY</a>
+                <div class="stats">
+                    <div class="stat"><strong>250+</strong><small>EXCLUSIVE DROPS</small></div>
+                    <div class="stat"><strong>12K+</strong><small>GLOBAL CLIENTS</small></div>
+                    <div class="stat"><strong>4.9/5</strong><small>TOP RATED</small></div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1000&q=85"
+                    alt="Luxury Electric Blue Sneaker" onerror="this.style.display='none'">
+            </div>
+        </section>
+
+        <section id="products">
+            <div class="section-head reveal">
+                <small>CURATED COLLECTION</small>
+                <h2>ELEVATE YOUR <span style="color:var(--primary)">EVERY STEP.</span></h2>
+                <p>Fresh limited releases and elite everyday classics.</p>
+            </div>
+            <div class="categories">
+                <button class="filter active" data-filter="all">ALL SNEAKERS</button>
+                <button class="filter" data-filter="men">MEN</button>
+                <button class="filter" data-filter="women">WOMEN</button>
+                <button class="filter" data-filter="sport">SPORT</button>
+            </div>
+            <div class="products" id="productGrid">
+                <article class="product reveal" data-category="men sport">
+                    <div class="product-img">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=700&q=80"
+                            alt="Electric Runner">
+                        <span class="tag">BESTSELLER</span><button class="heart" aria-label="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <div class="rating">★★★★★ <span style="color:#8892b0">(128)</span></div>
+                        <h3>Aero Cobalt Pro</h3>
+                        <p>High performance meets sleek aesthetics.</p>
+                        <div class="price-row"><span class="price">Rs. 8,499</span><button class="add"
+                                data-name="Aero Cobalt Pro">ADD +</button></div>
+                    </div>
+                </article>
+                <article class="product reveal" data-category="men">
+                    <div class="product-img">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=700&q=80"
+                            alt="Urban Minimalist Sneaker">
+                        <span class="tag">NEW DROP</span><button class="heart" aria-label="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <div class="rating">★★★★★ <span style="color:#8892b0">(94)</span></div>
+                        <h3>Alpine White Minimal</h3>
+                        <p>Clean leather profile for daily luxury.</p>
+                        <div class="price-row"><span class="price">Rs. 6,999</span><button class="add"
+                                data-name="Alpine White Minimal">ADD +</button></div>
+                    </div>
+                </article>
+                <article class="product reveal" data-category="women">
+                    <div class="product-img">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=700&q=80"
+                            alt="Women fashion sneaker">
+                        <span class="tag">TRENDING</span><button class="heart" aria-label="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <div class="rating">★★★★★ <span style="color:#8892b0">(76)</span></div>
+                        <h3>Azure Street Edition</h3>
+                        <p>Contemporary styling with ultra-soft cushioning.</p>
+                        <div class="price-row"><span class="price">Rs. 7,499</span><button class="add"
+                                data-name="Azure Street Edition">ADD +</button></div>
+                    </div>
+                </article>
+                <article class="product reveal" data-category="sport men">
+                    <div class="product-img">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=700&q=80"
+                            alt="Sport Trainer">
+                        <span class="tag">SPORT</span><button class="heart" aria-label="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <div class="rating">★★★★★ <span style="color:#8892b0">(113)</span></div>
+                        <h3>Velocity Apex X</h3>
+                        <p>Engineered for high-intensity movement.</p>
+                        <div class="price-row"><span class="price">Rs. 9,299</span><button class="add"
+                                data-name="Velocity Apex X">ADD +</button></div>
+                    </div>
+                </article>
+                <article class="product reveal" data-category="women sport">
+                    <div class="product-img">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=700&q=80"
+                            alt="Cloud Lifestyle Shoe">
+                        <span class="tag">POPULAR</span><button class="heart" aria-label="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <div class="rating">★★★★★ <span style="color:#8892b0">(87)</span></div>
+                        <h3>Nimbus Cloud Walk</h3>
+                        <p>Featherlight weight for all-day journeys.</p>
+                        <div class="price-row"><span class="price">Rs. 5,999</span><button class="add"
+                                data-name="Nimbus Cloud Walk">ADD +</button></div>
+                    </div>
+                </article>
+                <article class="product reveal" data-category="men">
+                    <div class="product-img">
+                        <img loading="lazy"
+                            src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=700&q=80"
+                            alt="Midnight Street Sneaker">
+                        <span class="tag">LIMITED</span><button class="heart" aria-label="Add to wishlist">♡</button>
+                    </div>
+                    <div class="product-info">
+                        <div class="rating">★★★★★ <span style="color:#8892b0">(62)</span></div>
+                        <h3>Midnight Navy Luxury</h3>
+                        <p>Bold textures with iconic depth details.</p>
+                        <div class="price-row"><span class="price">Rs. 8,999</span><button class="add"
+                                data-name="Midnight Navy Luxury">ADD +</button></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="reveal">
+                <img loading="lazy"
+                    src="https://images.unsplash.com/photo-1512374382146-233842b6a83b?auto=format&fit=crop&w=1000&q=85"
+                    alt="Store showcase sneakers">
+            </div>
+            <div class="reveal">
+                <div class="eyebrow">THE MOEED STANDARD</div>
+                <h2>UNCOMPROMISING CRAFT.<br><span style="color:var(--primary)">BUILT FOR PERFECTION.</span></h2>
+                <p>At MOEED, we redefine footwear standards by blending architectural design with supreme ergonomic
+                    comfort. Each pair tells a story of precision, style, and uncompromising quality.</p>
+                <a href="#products" class="btn">VIEW ENTIRE LINEUP ↗</a>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-head reveal"><small>WHY CHOOSE US</small>
+                <h2>ENGINEERED FOR <span style="color:var(--primary)">EXCELLENCE.</span></h2>
+            </div>
+            <div class="features">
+                <div class="feature reveal">
+                    <div class="icon">🚀</div>
+                    <h3>EXPRESS SHIPPING</h3>
+                    <p>Swift and secure door-to-door delivery nationwide.</p>
+                </div>
+                <div class="feature reveal">
+                    <div class="icon">💎</div>
+                    <h3>PREMIUM MATERIALS</h3>
+                    <p>Sourced with top-grade textiles and structural support.</p>
+                </div>
+                <div class="feature reveal">
+                    <div class="icon">🛡️</div>
+                    <h3>SECURE SHOPPING</h3>
+                    <p>Dedicated customer care for a seamless buying process.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="offer reveal">
+            <div>
+                <h2>SECURE YOUR SIGNATURE PAIR<br>BEFORE THEY SELL OUT.</h2>
+                <p>Explore elite drops crafted for modern trendsetters.</p>
+            </div>
+            <a href="#products" class="btn">SHOP NOW ↗</a>
         </div>
-      </div>
-      <div class="stamp">MOEED<br><span>✦</span><br>SNEAKERS</div>
-    </section>
-    <div class="marquee">
-      <div><span>MOEED SNEAKER DISTRICT ✦ STREET STYLE ✦ FRESH KICKS ✦ OWN YOUR GAME ✦</span><span>MOEED SNEAKER
-          DISTRICT ✦ STREET STYLE ✦ FRESH KICKS ✦ OWN YOUR GAME ✦</span></div>
-    </div>
-    <section class="products reveal" id="shoes">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">PICK YOUR PAIR</p>
-          <h2>THE SNEAKER <span>LINEUP.</span></h2>
+
+        <section id="reviews">
+            <div class="section-head reveal"><small>CLIENT TESTIMONIALS</small>
+                <h2>WHAT THE CULTURE <span style="color:var(--primary)">SAYS.</span></h2>
+            </div>
+            <div class="reviews">
+                <div class="review reveal">
+                    <div class="rating">★★★★★</div>
+                    <p>“The cobalt blue shade and fit are incredible. Easily the most comfortable high-end sneakers I've
+                        owned.”</p>
+                    <strong>— Ahmed K.</strong>
+                </div>
+                <div class="review reveal">
+                    <div class="rating">★★★★★</div>
+                    <p>“Clean white design with premium finishing. They pair perfectly with both casual street style and
+                        formals.”</p>
+                    <strong>— Sara M.</strong>
+                </div>
+                <div class="review reveal">
+                    <div class="rating">★★★★★</div>
+                    <p>“Fast response and top-tier quality. Moeed store never disappoints when it comes to styling
+                        options.”</p><strong>— Hamza R.</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="contact-wrap">
+                <div class="reveal">
+                    <div class="eyebrow">GET IN TOUCH</div>
+                    <h2>LET'S TALK <span style="color:var(--primary)">STYLE.</span></h2>
+                    <p>Have inquiries regarding sizing, stock status, or custom orders? Reach out directly through the
+                        demo form or via our official contact channels below.</p>
+                    <p style="margin-top:22px">✉ Gmail: <a href="mailto:amoeednoonari@gmail.com"
+                            style="color:var(--primary); font-weight:600;">amoeednoonari@gmail.com</a></p>
+                    <p>💬 WhatsApp: <a href="https://wa.me/923192644945" target="_blank"
+                            style="color:var(--primary); font-weight:600;">+92 319 2644945</a></p>
+                    <p>📍 Location: Pakistan</p>
+                </div>
+                <form id="contactForm" class="reveal">
+                    <input type="text" placeholder="Your name" required>
+                    <input type="email" placeholder="Your email address" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Write your message..." required></textarea>
+                    <button class="btn" type="submit">SEND MESSAGE ↗</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a class="logo" href="#home">MOEED<span>.</span></a>
+        <p>© 2026 MOEED LUXURY SNEAKERS. ALL RIGHTS RESERVED.</p>
+        <div class="social">
+            <a href="https://wa.me/923192644945" target="_blank">WHATSAPP</a>
+            <a href="mailto:amoeednoonari@gmail.com">GMAIL</a>
+            <a href="#contact">INSTAGRAM</a>
         </div>
-        <p class="sub">Iconic looks. Everyday comfort.<br>Find a pair that fits your vibe.</p>
-      </div>
-      <div class="filters"><button class="filter active" data-cat="All">ALL SHOES</button><button class="filter"
-          data-cat="Running">RUNNING</button><button class="filter" data-cat="Streetwear">STREETWEAR</button><button
-          class="filter" data-cat="Classic">CLASSICS</button><button class="filter"
-          data-cat="Basketball">BASKETBALL</button></div>
-      <div class="grid" id="productGrid"></div>
-    </section>
-    <section class="promo reveal" id="drops">
-      <div>
-        <p class="eyebrow">THE STREET DOESN'T WAIT</p>
-        <h2>NEW SEASON.<br><span>NEW ENERGY.</span></h2>
-        <p>Make every step count. Your next favourite pair is waiting.</p><a href="#shoes" class="btn">EXPLORE THE
-          LINEUP ↗</a>
-      </div>
-    </section>
-    <section class="benefits reveal" id="benefits">
-      <article class="benefit">
-        <div class="icon">↗</div>
-        <h3>FIND YOUR STYLE</h3>
-        <p>From everyday classics to bold streetwear-inspired looks.</p>
-      </article>
-      <article class="benefit">
-        <div class="icon">✳</div>
-        <h3>FRESH LOOKS</h3>
-        <p>Explore a curated demo collection of sneaker styles.</p>
-      </article>
-      <article class="benefit">
-        <div class="icon">♡</div>
-        <h3>MADE FOR YOU</h3>
-        <p>Save your favourites and build your own sneaker shortlist.</p>
-      </article>
-    </section>
-    <section class="contact reveal" id="contact">
-      <div class="contact-copy">
-        <p class="eyebrow">LET'S TALK SNEAKERS</p>
-        <h2>GET IN <span>TOUCH.</span></h2>
-        <p>Have a question about a pair? Message Moeed on WhatsApp or send an email directly through Gmail. We’d love to
-          hear from you.</p>
-      </div>
-      <div class="contact-actions">
-        <a class="contact-link whatsapp" href="https://wa.me/923192644945" target="_blank" rel="noopener noreferrer"
-          aria-label="Message Moeed on WhatsApp">
-          <svg class="wa-icon" viewBox="0 0 32 32" aria-hidden="true">
-            <path fill="#25D366" d="M16 2.7A13.1 13.1 0 0 0 4.7 22.4L3 29l6.8-1.8A13.1 13.1 0 1 0 16 2.7z" />
-            <path fill="#fff"
-              d="M23.5 19.1c-.4-.2-2.1-1-2.5-1.1-.3-.1-.6-.2-.8.2-.3.4-.9 1.1-1.1 1.3-.2.3-.4.3-.8.1-.4-.2-1.5-.6-2.9-1.8-1.1-1-1.8-2.1-2-2.5-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.6.1-.3 0-.5 0-.7s-.8-1.9-1.1-2.6c-.3-.7-.6-.6-.8-.6h-.7c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.5 1.5 3.8c.2.3 2.6 4 6.3 5.6.9.4 1.6.6 2.1.7.9.3 1.7.2 2.3.1.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.2-.4-.3-.8-.5z" />
-          </svg>
-          <span><strong>Chat on WhatsApp</strong><small>Usually the fastest way to reach us</small></span></a>
-        <a class="contact-link gmail"
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=amoeednoonari%40gmail.com&su=MOEED%20Sneaker%20Store%20Inquiry"
-          target="_blank" rel="noopener noreferrer" aria-label="Email Moeed using Google Gmail">
-          <svg class="gmail-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="#4285F4" d="M3 6.5v11A1.5 1.5 0 0 0 4.5 19H7V9.2z" />
-            <path fill="#34A853" d="M17 9.2V19h2.5A1.5 1.5 0 0 0 21 17.5v-11z" />
-            <path fill="#EA4335"
-              d="M3.5 5.2A1.5 1.5 0 0 0 3 6.5l9 6.3 9-6.3a1.5 1.5 0 0 0-.5-1.3A1.5 1.5 0 0 0 19.5 5H4.5a1.5 1.5 0 0 0-1 .2z" />
-            <path fill="#C5221F" d="M7 9.2V19h10V9.2l-5 3.6z" />
-          </svg>
-          <span><strong>Email with Gmail</strong><small>amoeednoonari@gmail.com</small></span></a>
-      </div>
-    </section>
-  </main>
-  <footer><a href="#home" class="logo">MOEED<span>.</span><small>SNEAKER DISTRICT</small></a>
-    <p>Big steps. Your own story.</p><a href="#shoes">EXPLORE SNEAKERS ↗</a>
-    <div class="bottom"><span>© 2026 MOEED SNEAKER DISTRICT</span><span>DEMO STORE · NOT AN OFFICIAL NIKE WEBSITE</span>
-    </div>
-  </footer>
-  <a class="wa-float" href="https://wa.me/923192644945" target="_blank" rel="noopener noreferrer"
-    aria-label="Chat with Moeed on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true">
-      <path
-        d="M16 2.7A13.1 13.1 0 0 0 4.7 22.4L3 29l6.8-1.8A13.1 13.1 0 1 0 16 2.7zm0 23.8a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.7 10.7 0 1 1 16 26.5zm5.9-8c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.8-2.1-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6s-.7-1.6-1-2.2c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.7s1.2 3 1.4 3.2c.2.2 2.3 3.5 5.4 4.9.8.3 1.4.5 1.8.6.8.2 1.5.2 2 0 .6-.1 1.8-.7 2-1.5.2-.7.2-1.3.2-1.5s-.3-.3-.6-.5z" />
-    </svg></a>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script>
-    const products = [
-      { id: 1, name: "Air Max Street", cat: "Streetwear", price: 12499, label: "BESTSELLER", stars: "★★★★★", img: "photo-1542291026-7eec264c27ff" },
-      { id: 2, name: "Court Classic Low", cat: "Classic", price: 8999, label: "CLASSIC", stars: "★★★★★", img: "photo-1552346154-21d32810aba3" },
-      { id: 3, name: "Velocity Runner", cat: "Running", price: 10999, label: "NEW DROP", stars: "★★★★☆", img: "photo-1539185441755-769473a23570" },
-      { id: 4, name: "Retro High Top", cat: "Basketball", price: 13999, label: "FAN FAVOURITE", stars: "★★★★★", img: "photo-1552346154-21d32810aba3" },
-      { id: 5, name: "Urban White", cat: "Classic", price: 7499, label: "EVERYDAY", stars: "★★★★☆", img: "photo-1495555961986-6d4c1ecb7be3" },
-      { id: 6, name: "Redline Sport", cat: "Running", price: 9999, label: "PERFORMANCE", stars: "★★★★★", img: "photo-1460353581641-37baddab0fa2" },
-      { id: 7, name: "Street Flex", cat: "Streetwear", price: 11499, label: "TRENDING", stars: "★★★★☆", img: "photo-1525966222134-fcfa99b8ae77" },
-      { id: 8, name: "Court Legend", cat: "Basketball", price: 14999, label: "STATEMENT", stars: "★★★★★", img: "photo-1515955656352-a1fa3ffcd111" }
-    ];
-    let cart = [], active = "All"; const liked = new Set(); const money = n => "Rs. " + n.toLocaleString("en-PK");
-    function render() {
-      const list = active === "All" ? products : products.filter(p => p.cat === active); document.getElementById("productGrid").innerHTML = list.map((p, i) => `
-<article class="card" style="--delay:${i * 65}ms"><div class="photo">
-<img loading="lazy" src="https://images.unsplash.com/${p.img}?auto=format&fit=crop&w=650&q=85" alt="${p.name}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=650&q=80'">
-<span class="tag">${p.label}</span><button class="heart ${liked.has(p.id) ? "liked" : ""}" onclick="toggleLike(${p.id},this)" aria-label="Favourite ${p.name}">♥</button></div>
-<div class="details"><small>${p.cat.toUpperCase()}</small><h3>${p.name}</h3><div class="price-row"><span class="price">${money(p.price)}</span><span class="stars">${p.stars}</span></div></div>
-<button class="add" onclick="addCart(${p.id})">＋ ADD TO BAG</button></article>`).join("");
-    }
-    function addCart(id) { const p = products.find(x => x.id === id); cart.push(p); document.getElementById("cartCount").textContent = cart.length; toast(p.name + " added to your bag!") }
-    function toggleLike(id, el) { if (liked.has(id)) { liked.delete(id); el.classList.remove("liked"); toast("Removed from favourites") } else { liked.add(id); el.classList.add("liked"); toast("Saved to favourites ♥") } }
-    function showCart() { if (!cart.length) { toast("Your bag is empty — find your next pair!"); return } const total = cart.reduce((sum, p) => sum + p.price, 0); toast("Bag: " + cart.length + " item(s) · Total " + money(total)) }
-    let toastTimer; function toast(msg) { const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2500) }
-    document.querySelectorAll(".filter").forEach(b => b.addEventListener("click", () => { document.querySelectorAll(".filter").forEach(x => x.classList.remove("active")); b.classList.add("active"); active = b.dataset.cat; render() }));
-    const menuBtn = document.getElementById("menuBtn"), nav = document.getElementById("nav"); menuBtn.addEventListener("click", () => { const opened = nav.classList.toggle("open"); menuBtn.textContent = opened ? "✕" : "☰"; menuBtn.setAttribute("aria-expanded", String(opened)) });
-    document.querySelectorAll("nav a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); menuBtn.textContent = "☰"; menuBtn.setAttribute("aria-expanded", "false") }));
-    document.getElementById("openCart").addEventListener("click", showCart);
-    if ("IntersectionObserver" in window) { const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target) } }), { threshold: .12 }); document.querySelectorAll(".reveal").forEach(el => observer.observe(el)) } else { document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible")) }
-    render();
-  </script>
+    </footer>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('nav');
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('open');
+            menuBtn.textContent = nav.classList.contains('open') ? '✕' : '☰';
+        });
+        nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+            nav.classList.remove('open');
+            menuBtn.textContent = '☰';
+        }));
+
+        let cartCount = 0;
+        const cart = [];
+        let toastTimer;
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+        }
+
+        document.querySelectorAll('.add').forEach(button => {
+            button.addEventListener('click', () => {
+                cart.push(button.dataset.name);
+                cartCount++;
+                document.getElementById('cartCount').textContent = cartCount;
+                showToast(button.dataset.name + ' added to your demo cart!');
+            });
+        });
+
+        document.getElementById('cartBtn').addEventListener('click', () => {
+            if (!cart.length) {
+                showToast('Your cart is empty. Explore the collection!');
+            } else {
+                showToast('Your cart: ' + cart.join(', '));
+            }
+        });
+
+        document.querySelectorAll('.heart').forEach(button => {
+            button.addEventListener('click', () => {
+                const active = button.textContent === '♥';
+                button.textContent = active ? '♡' : '♥';
+                button.style.color = active ? 'white' : '#0077ff';
+                showToast(active ? 'Removed from wishlist' : 'Added to wishlist!');
+            });
+        });
+
+        document.querySelectorAll('.filter').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+                const filter = button.dataset.filter;
+                document.querySelectorAll('.product').forEach(product => {
+                    const categories = product.dataset.category.split(' ');
+                    product.style.display = (filter === 'all' || categories.includes(filter)) ? '' : 'none';
+                });
+            });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', event => {
+            event.preventDefault();
+            showToast('Demo message submitted successfully!');
+            event.target.reset();
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 
 </html>
